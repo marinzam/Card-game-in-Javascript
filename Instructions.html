@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>COMP 426, Fall 2017, Assignment 2</title>
+    <link rel="stylesheet" href="Instructions_files/A2.css" type="text/css">
+  </head>
+
+  <body>
+    <h1>Assignment 2</h1>
+    <h2>JavaScript Game</h2>
+    <h3 class="strike">Due: November 3rd, 11:59:59 pm</h3>
+    <h3>Due: November 13th, 11:59:59 pm</h3>
+
+    <h3>Game of Hearts</h3>
+
+    <p>
+      In this assignment, you'll create a standalone JavaScript game
+      that runs in a browser.  This assignment will exercise various
+      aspects of client-side programming including CSS, HTML,
+      JavaScript, and jQuery using event-based programming and
+      dynamically updating the DOM.
+    </p>
+
+    <h3>Set Up</h3>
+
+    <p>
+      Create a directory in your course web space called "a2".
+    </p>
+
+    <p>
+      Copy all of the file from this directory into your a2 directory:
+      <a href="http://www.cs.unc.edu/Courses/comp426-f17/hearts">
+	http://www.cs.unc.edu/Courses/comp426-f17/hearts
+      </a>
+    </p>
+
+    <h3>The Game Of Hearts</h3>
+
+    <p>
+      As explained in class, hearts is a cardgame played with 4
+      people. Your version of hearts will allow a user to play against 3
+      AI players. You don't really need to have played hearts in order
+      to do the assignment, but it may help you understand how the
+      description of the game that follows and the interface that you
+      need to build so if you've never played hearts go here, read the
+      rules and play a few games:
+    </p>
+
+    <p>
+      <a href="https://cardgames.io/hearts/">https://cardgames.io/hearts/</a>
+    </p>
+
+    <h3>A Hearts Match</h3>
+
+    <p>
+      A "hearts match" is played between 4 players sitting around a
+      card table. You can think of these four positions as north,
+      east, south, and west. A match is played as a series of hearts
+      games. Each game will result in a score for the four players and
+      scores from the games are added together until one player
+      reaches 100 points.  At this point the match is over and the
+      player with the lowest score wins.
+    </p>
+
+    <p>
+      Each game of hearts involves potentially passing cards to
+      another player. In a hearts match, the first game is played with
+      cards passed to the left (i.e., north to east, east to south,
+      south to west, and west to north).  The second game is played
+      with cards passed to the right. The third game is played with
+      cards passed across.  The fourth game is played with no
+      passing. Any subsequent games repeat this pattern.
+    </p>
+    
+    <h3>A Hearts Game</h3>
+
+    <p>
+      A single game of hearts is played by first dealing each player a
+      "hand" of 13 cards. The first action of the game is to pass
+      cards to another player if necessary (every fourth game will be
+      a "no pass" game) as described above. Each player chooses 3
+      cards to pass. Once all 4 players have chosen, the cards are
+      passed simultaneously.
+    </p>
+
+    <p>
+      Once cards have been passed, play begins with the player that
+      has the 2 of clubs. This card leads the first trick (i.e.,
+      round). In clockwise order, each player must then play a card. A
+      player must play the same suit as led (so, for example, clubs on
+      the first trick) if possible. If the player does not have that
+      suit, they may play any card they wish. The player that plays
+      the highest (2 is low, Ace is high) ranked card of the leading
+      suit wins that trick (i.e., round), collects any points in that
+      trick (see scoring below), and leads off the next trick.
+    </p>
+
+    <p>
+      When leading, a player may not lead with a heart unless a heart
+      has already been played in some prior trick unless the player
+      has nothing but hearts and is forced to lead with a heart. If a
+      heart has already been played on a prior trick, then there is no
+      restriction and a player may lead with a heart if they want.
+    </p>
+    
+    <p>
+      Play continues until all 13 cards have been played (i.e., 13
+      tricks).
+    </p>
+    
+    <h3>Scoring</h3>
+
+    <p>
+      Each heart is worth 1 point and the queen of spades is worth 13
+      points for a total of 26 possible points in one game of
+      hearts. If a player collects all 26 points, this is known as
+      "shooting the moon" and in that case, that player is given 0
+      points and every other player is given 26 points. Remember, the
+      object of the game is to avoid points, so lower scores are
+      better.
+    </p>
+    
+    <h3>Writing The Software</h3>
+
+    <p>
+      Your version of hearts should be accessed via a single HTML file
+      in your a2 directory called "hearts.html".  You should include
+      via &lt;script&gt; elements the following JavaScript source
+      files (in this order):
+    </p>
+
+    <ul>
+      <li><a href="http://www.cs.unc.edu/Courses/comp426-f17/hearts/jquery-3.2.1.js">
+	  jquery-3.2.1.js</a>
+	<ul><li> This just loads jQuery which is required by some of
+	    the other scripts and will be generally useful for your
+	    game.
+      </li></ul></li>
+
+      <li><a href="http://www.cs.unc.edu/Courses/comp426-f17/hearts/Card.js">
+	  Card.js</a>
+	<ul><li> This file contains class definitions for the Card
+	    object that is used to represent a specific card and the
+	    Hand object that is used to represent a particular
+	    player's hand.
+      </li></ul></li>
+      
+      <li><a href="http://www.cs.unc.edu/Courses/comp426-f17/hearts/Hearts.js">
+	  Hearts.js</a>
+	<ul><li> This file contains the class definition for GameOfHearts
+	    which represents a single game of hearts.
+      </li></ul></li>
+
+      <li><a href="http://www.cs.unc.edu/Courses/comp426-f17/hearts/HeartsMatch.js">
+	  HeartsMatch.js</a>
+	<ul>
+	  <li>
+	    This file contains the class defintions for HeartsMatch
+	    which creates and runs a series of hearts games.
+      </li></ul></li>
+
+      <li><a href="http://www.cs.unc.edu/Courses/comp426-f17/hearts/DumbAI.js">
+	  DumbAI.js</a>
+	<ul>
+	  <li>
+	    This file contains the class definition for a "dumb" AI player
+	    that will simply pass the first 3 cards of its hand when
+	    necessary and play the first playable card from its hand at
+	    any given time.
+      </li></ul></li>
+    </ul>
+    
+    <p>
+      You should include subsequent &lt;script&gt; elements for your
+      code. You are free to put all of your code in a single file or
+      to organize it into multiple files as you see fit.
+    </p>
+
+    <p>
+      The "main" program that your code runs should create three
+      instances of a DumbAI and one instance of a player object that
+      connects your game's interface with the actions of one of the
+      player's in the match. Your code should register the three
+      DumbAI's and your player object with a new HeartsMatch object
+      and then run the match by calling the HeartsMatch object's <code>run()</code>
+      method. See the file
+      <a href="http://www.cs.unc.edu/Courses/comp426-f17/hearts/TextPlayerVsThreeDumbAI.js">
+	TextPlayerVsThreeDumbAI.js </a> for an example.
+    </p>
+    
+    <p>
+      The HeartsMatch object expects your player object to have the
+      following methods:
+    </p>
+    
+    <ul>
+      <li><code>getName()</code>
+	<ul><li> Retrieves the name of your player. This can be
+	    hardcoded or be something that your game provides an
+	    interface for setting/changing.
+      </li></ul></li>
+      
+      <li><code>setupMatch(match_object, position)</code>
+	<ul><li> This method will be called by the HeartsMatch object
+            once in order to provide to your player object a reference
+            to the match object (the first parameter) and the position
+            associated with your player (one of "North", "East",
+            "South", or "West").
+      </li></ul></li>
+      
+      <li><code>setupNextGame(next_game, player_key)</code>
+	<ul><li> This method will be called by the HeartsMatch object
+            just before each hearts game is played. The first
+            parameter will be a reference to the GameOfHearts object
+            that models the hearts game that is about to be played
+	    and the second parameter will
+            be your player's "key" which is necessary to retrieve and
+            interact with your player's hand and to execute certain
+            methods on the game object.
+	</li></ul>
+    </li></ul>
+    
+    <h3>Game Events</h3>
+    
+    <p>
+      For each game of hearts that is set up and run by the
+      HeartsMatch object, your player object should set up one or
+      more "game event handlers" in order to respond to game events.
+      To do this, use the <code>registerEventHandler</code> method
+      of the GameOfHearts
+      game object in order to register a callback function. This
+      method has the following
+      signature: <code>registerEventHandler(event_type,
+	handler)</code>
+    </p>
+    
+    <p>
+      The <code>registerEventHandler</code> method expects a first parameter,
+      <code>event_type</code>, that indicates which event type the handler should
+      be called for. The available event types are defined as
+      constants on a global Hearts object as follows:
+    </p><p>
+
+      </p><ul>
+	<li><code>Hearts.ALL_EVENTS</code></li>
+	<li><code>Hearts.GAME_OVER_EVENT</code></li>
+	<li><code>Hearts.GAME_STARTED_EVENT</code></li>
+	<li><code>Hearts.TRICK_START_EVENT</code></li>
+	<li><code>Hearts.TRICK_CONTINUE_EVENT</code></li>
+	<li><code>Hearts.TRICK_COMPLETE_EVENT</code></li>
+	<li><code>Hearts.CARD_PLAYED_EVENT</code></li>
+	<li><code>Hearts.PASSING_COMPLETE_EVENT</code></li>
+      </ul>
+      
+    <p>
+      Registering a handler with <code>ALL_EVENTS</code> will deliver all
+      events of every type to the handler. Otherwise, the handler
+      will be called for just the event type that it was registered
+      for.
+    </p>
+    
+    <p>
+      The second parameter to <code>registerEventHandler</code>
+      (i.e., <code>handler</code>) should
+      be the function object that you are trying to register as a
+      callback. The registered callback function will be executed
+      whenever a relevant game event occurs. The callback will be
+      provided with a single parameter that will be a game event
+      object that describes which event has occured.
+    </p>
+    
+    <p>
+      There is a separate game event object type for each of the
+      game events listed above.  All game event objects regardless
+      of type will have the properties <code>event_type</code> and
+      <code>game</code>. The
+      <code>event_type</code> property will be one of the event type constants
+      listed above. The <code>game</code> property will be a reference to the
+      hearts game object that generated the event.
+      
+      Depending on the event type, the game event object may have
+      additional methods for retrieving information about the event
+      as follows:
+    </p>
+
+    <table>
+      <tbody><tr>
+	<th>Event Type</th> <th>Event object method
+	  names</th> <th>Description</th></tr>
+      
+      <tr>
+	<td><code>GAME_STARTED_EVENT</code></td>
+	<td><code>getPassType()</code></td>
+	<td>Reports what kind of passing is required. One of
+	  <code>Hearts.PASS_LEFT</code>, <code>Hearts.PASS_RIGHT</code>,
+	  <code>Hearts.PASS_ACROSS</code>,
+	  or <code>Hearts.PASS_NONE</code></td>
+      </tr>
+
+      <tr>
+	<td><code>TRICK_START_EVENT</code></td>
+	<td><code>getStartPos()</code></td>
+	<td> Reports which position is expected to play a card in
+	  order to start the next trick.</td>
+      </tr>
+
+      <tr>
+	<td><code>TRICK_CONTINUE_EVENT</code></td>
+	<td><code>getNextPos()</code></td>
+	<td>Reports which position is expected to play a card in
+	  order to continue the current trick.</td>
+      </tr>
+
+      <tr>
+	<td><code>TRICK_COMPLETE_EVENT</code></td>
+	<td><code>getTrick()</code></td>
+	<td>Returns a Trick object that represents the just
+	  completed trick.</td>
+      </tr>
+
+      <tr>
+	<td rowspan="2"><code>CARD_PLAYED_EVENT</code></td>
+	<td><code>getPosition()</code></td>
+	<td> Returns the position of the player that played the
+	  card.</td>
+      </tr><tr>
+	<td><code>getCard()</code></td>
+	<td>Returns the Card object of the card that was
+	  played.</td>
+      </tr>
+    </tbody></table>
+
+    <h3>Event Order / Player Interactions</h3>
+
+    <p>
+      Each game of hearts will produce events and expect actions to
+      be taken by your player as follows.
+    </p>
+
+    <p>
+      The first event produced by a game will be a
+      <code>GAME_STARTED_EVENT</code>. If the game requires passing (i.e., the
+      value of <code>getPassType()</code> on the game started event object is one
+      of <code>Hearts.PASS_LEFT</code>, <code>Hearts.PASS_RIGHT</code>, or
+      <code>Hearts.PASS_ACROSS</code>), then the game will expect you to call the
+      <code>passCards()</code> method on the game object in order to indicate
+      which cards to pass. See <a href="#pass_and_play">Passing and Playing Cards</a> below.
+    </p>
+    
+    <p>
+      After the <code>GAME_STARTED_EVENT</code>, once all cards have been passed
+      or immediately in the case of a no pass game, a
+      <code>PASSING_COMPLETE_EVENT</code> will be generated.
+    </p>
+
+    <p>
+      After the <code>PASSING_COMPLETE_EVENT</code>, a <code>TRICK_START_EVENT</code> will be
+      generated to signal the start of the first trick. Use the
+      <code>getStartPos()</code> method of the game event object
+      in order to find out which player is expected to
+      lead this trick. You can compare this value to your player's
+      position in order to detect when your player is expected to play a card
+      to lead the trick (see <a href="#pass_and_play">Passing and Playing Cards</a> below for
+      more). Your player's position was originally reported back to you by the HeartsMatch
+      object when it called your player object's <code>setupMatch()</code> method.	
+    </p>
+
+    <p>
+      After a card is played to lead the trick, a <code>CARD_PLAYED_EVENT</code>
+      is generated to report which card was played.
+    </p>
+
+    <p>
+      After a card has been played to lead the trick, a
+      <code>TRICK_CONTINUE_EVENT</code> will be generated once for each of the
+      next three players in order to signal that a card
+      should be played into the current
+      trick.  Each <code>TRICK_CONTINUE_EVENT</code> is followed by a
+      <code>CARD_PLAYED_EVENT</code> to report which card was played.  As with
+      <code>TRICK_START_EVENT</code>, if the next position to play is your
+      player, then the game will be waiting on your player to play a
+      card next.
+    </p>
+
+    <p>
+      After all four players have played a card into the trick, a
+      <code>TRICK_COMPLETE_EVENT</code> is
+      generated. The <code>getTrick()</code>
+      method of the trick complete game event object can be used to retrieve a
+      Trick object that encapsulates all of the relevant information
+      about the trick that was completed. See the Trick object
+      reference page for details.
+    </p>
+
+    <p>
+      After each trick is complete, the sequence begins again with a
+      <code>TRICK_START_EVENT</code> until all 13 tricks have been
+      completed. After the 13th trick is completed, the game will
+      generate a <code>GAME_OVER_EVENT</code>.
+    </p>
+
+    <p>
+      The HeartsMatch object will then setup the next game, calling
+      your player object's <code>setupNextGame</code> method to provide a
+      reference to the next game object and a new player key for the
+      next game thus allowing your player to register an event
+      callback handler for this next game and the sequence starts
+      all over again.
+    </p>
+
+    
+    <h3><a name="pass_and_play">Passing and Playing Cards</a></h3>
+
+    <p>
+      At various points in a game, your player will be expected to
+      pass or play cards and in general, you will need to know which
+      cards are in your player's hand in order to display some
+      representation of them in your interface.
+    </p>
+    
+    <p>
+      A player's hand is represented by a <code>Hand</code> object. You can
+      retrieve your player's hand from the game object using the
+      <code>getHand(player_key)</code> method. This method requires
+      you to
+      pass your player's key. If you do not (or if the player key is incorrect), the
+      method will fail.
+    </p>
+
+    <p>
+      Given a <code>Hand</code> object, you can retrieve an array of the 13
+      cards originally dealt to the hand before any passing has occured
+      using the method <code>getDealtCards(player_key)</code>.
+    </p>
+
+    <p>
+      After passing is complete, you can retrieve the current
+      remaining unplayed cards in a hand
+      using the <code>getUnplayedCards(player_key)</code> method.
+    </p>
+
+    <p>
+      Any cards already played can be retrieved with the
+      <code>getPlayedCards(player_key)</code> method.
+    </p>
+
+    <p>
+      All of these <code>Hand</code> methods require as a parameter the
+      appropriate player key associated with the hand in order to
+      succeeed.
+    </p>
+
+    <p>
+      When your player is expected to pass cards, your interface
+      should provide some way for the player to select three cards
+      to pass. Once selected, you should call
+      the <code>passCards(cards, player_key)</code> method
+      of the game object.
+    </p>
+
+    <p>
+      The first parameter, <code>cards</code>, should be an array of three <code>Card</code>
+      objects that represent the cards your player would like to
+      pass. The second parameter, <code>player_key</code>, should be the player
+      key provided to your player when the game was setup. On
+      success, the method will return true. If something goes wrong
+      (i.e., too few or too many cards, you passed cards that aren't
+      actually in your hand, wrong player key, etc.), the method
+      will return false.
+    </p>
+
+    <p>
+      When your player is expected to play a card during a trick,
+      your interface should provide some way for the player to
+      select a card to play and then once selected you should call
+      the <code>playCard(card, player_key)</code> method of the game
+      object.
+    </p>
+
+    <p>
+      The first parameter should be a <code>Card</code> object for the card to be
+      played. The second parameter should by your player key. The
+      method returns true on success and false on failure.
+    </p>
+
+    <p>
+      Once all players have passed cards, the game object will do
+      the work of updating the <code>Hand</code> objects of each
+      player by removing the cards
+      passed and adding the cards that were passed to the hand.
+      This will be reflected in the result of
+      the <code>getUnplayedCards</code>
+      method of the hand.
+      Note, however, the
+      method <code>getDealtCards</code> always returns the original 13
+      cards dealt to the hand before passing.
+    </p>
+
+    <p>
+      Because there are restrictions in the game of hearts about
+      what card can be played at what time (e.g., first trick must
+      start with 2 of clubs, can't lead hearts unless hearts already
+      played, must follow suit, etc.), not every unplayed card in
+      your player's hand will be eligible to be played at the time
+      your player needs to play a card.
+    </p>
+
+    <p>
+      You can retrieve an array of playable cards from your Hand
+      object using the <code>Hand</code> object method
+      <code>getPlayableCards(player_key)</code>. The
+      result will be a subset of unplayed cards that are legal to
+      play at this point in the game.  Like the other <code>Hand</code> methods,
+      you need to supply your correct player key for it to work. The
+      <code>getPlayableCards</code> method will return an empty array if it is
+      called when it is not your turn to play a card.
+    </p>
+
+    <h3>Required Game Features</h3>
+
+    <p>
+      The following features are required for full credit:
+    </p>
+
+    <ul>
+      <li>Other than providing a value for your player's name, the
+	entire game should be operable via mouse operations.</li>
+      <li>There should be some sort of indication of when it is the
+	user's turn.</li>
+      <li>There should be some sort of visual representation of all
+	of the remaining unplayed cards in your user's hand.</li>
+      <li>When it is your user's turn, there should be some sort of
+	visual indication of which cards in your user's hand are
+	eligible to be played and which are not.</li>
+      <li>While a trick is played, there should be some sort of
+	visual representation of which cards have been played by
+	which player.</li>
+      <li>When a trick is over, there should be some sort of
+	indication of which player won the trick.</li>
+      <li>There should be a way to see what the current overall
+	hearts match scoreboard totals are. The scoreboard can be
+	retrieved from the HeartsMatch object using the
+	getScoreboard() method. It will return an associative array
+	indexed by the direction constants (i.e., Hearts.NORTH,
+	Hearts.EAST, Hearts.SOUTH, and Hearts.WEST).
+      </li>
+    </ul>
+
+    <h3>Object Reference</h3>
+
+    <p>
+      Reference documentation for all of the classes is available
+      at this page: <a href="http://www.cs.unc.edu/~kmp/comp426fall17/ObjectReference.html">Object Reference
+	Page</a>
+    </p>
+  
+      
+    <h3>Miscellaneous Notes</h3>
+    <ul>
+      <li>The HeartsMatch object does not ever end the match and
+	will continue to set up hearts games and run them
+	indefinitely.
+      </li>
+      <li>
+	Some people play hearts with the rule that you are allowed
+	to lead hearts as soon as points have been broken (i.e.,
+	either a heart or the queen of spades has been played on
+	some prior trick). Others interpret the the rule about leading hearts
+	more strictly such that even if the queen of spades
+	which is worth 13 points has already been played, you still
+	can not lead hearts if a heart has not been played
+	yet. Our version allows hearts does the former and is not
+	strict about the rule, allowing hearts to be led as soon as points
+	are broken.
+    </li></ul>
+    
+  
+
+</body></html>
