@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Hearts: JavaScript Game</title>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="Card.js"></script>
+    <script type="text/javascript" src="DumbAI.js"></script>
+    <script type="text/javascript" src="Hearts.js"></script>
+    <script type="text/javascript" src="HeartsMatch.js"></script>
+    <script type="text/javascript" src="UIPlayer.js"></script>
+    <script type="text/javascript" src="UIPlayerVsThreeDumbAI.js"></script>
+    <link rel="stylesheet" type="text/css" href="UIPlayerVsThreeDumbAI.css">
+</head>
+<body>
+    <h1>&emsp;Hearts Match With UIPlayer Vs. Three DumbAIs</h1>
+    <div id="container">
+        <div id="game_area">
+            <table id="played_cards">
+                <tr id="first_row">
+                    <td></td>
+                    <td id="played_card_south" class="empty"></td>
+                    <td></td>
+                </tr>
+                <tr id="second_row">
+                    <td id="played_card_east" class="empty"></td>
+                    <td></td>
+                    <td id="played_card_west" class="empty"></td>
+                </tr>
+                <tr id="third_row">
+                    <td></td>
+                    <td id="played_card_north" class="empty"></td>
+                    <td></td>
+                </tr>
+            </table>
+            <table id="cards_table">
+            </table>
+            <button id="submit_button">Play</button>
+        </div>
+        <div id="score_div">
+                <h3>&emsp;Scoreboard<h3>
+                <ul id="scoreboard"></ul>
+        </div>
+        <div id='player_name'>
+            <h4>&emsp;You are player North<h4>
+        </div>
+        <div id="north_player">
+        </div>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,117 @@
+#game_area {
+    float:left;
+    width: 800px;
+    height: 550px;
+    border: thin solid black;
+    /*background-color: #005900;*/
+    background-color: #8E0000;
+}
+
+#north_player {
+    float:left;
+    width: 300px;
+    height: 100px;
+    border: thin solid black;
+    margin-left: 8px;
+    margin-bottom: 5px;
+}
+#played_cards {
+    position: relative;
+    top: 10%;
+    left: 35%;
+    width: 200px;
+    height: 270px;
+    background-color: #005900;
+    /*background-color: #8E0000;*/
+}
+
+#cards_table {
+    position: relative;
+    top:30%;
+    width: 800px;
+    height: 100px;
+    margin-left: 10px;
+}
+#submit_button {
+    position: relative;
+    left: 44%;
+    text-align: center;
+    font-size: 16px;
+}
+
+#score_div {
+    float: left;
+    height: 150px;
+    width: 300px;
+    border: thin solid black;
+    margin-left: 8px;
+    margin-bottom: 5px;
+}
+#player_name {
+    float: left;
+    height: 70px;
+    width: 300px;
+    border: thin solid black;
+    margin-left: 8px;
+    margin-bottom: 5px;
+}
+
+.text_player_message_log {
+    overflow: auto;
+    height: 100px;
+    width: 300px;
+}
+
+.text_player_input {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.ind_dealt_cards {
+    float: left;
+    display: block;
+    border: thin solid black;
+    border-width: 2px;
+    height: 75px;
+    width: 50px;
+    margin: 2px 2px 2px 2px;
+    font-size: 12px;
+    background-color: white;
+}
+
+/*, [id^="played_card"]*/
+.empty {
+    background-color: #005900;
+    /*background-color: #8E0000;*/
+    float: left;
+    display: block;
+    border-width: 1px;
+    height: 75px;
+    width: 50px;
+    margin-left: 5px;
+}
+
+.selected {
+    border-color: red;
+}
+
+.playable_card {
+    border-color: blue;
+}
+.selected.playable_card {
+    border-color: red;
+}
+
+[id^="row"] {
+    height: 77px;
+    width: 195px;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: Helvetica;
+}
+
+body {
+    background-color: 
+}
